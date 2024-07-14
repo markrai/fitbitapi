@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBit Heart Rate</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<h1>FitBit Heart Rate Data</h1>
+<h2>Monthly Average Resting Heart Rate</h2>
+<div id="monthly-chart"></div>
+<h2>Yearly Average Resting Heart Rate</h2>
+<div id="yearly-chart"></div>
+
+<script>
+    const graphJSONMonthly = {{ graphJSON_monthly|safe }};
+    const graphJSONYearly = {{ graphJSON_yearly|safe }};
+
+    Plotly.newPlot('monthly-chart', graphJSONMonthly.data, graphJSONMonthly.layout);
+    Plotly.newPlot('yearly-chart', graphJSONYearly.data, graphJSONYearly.layout);
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBit Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>FitBit Dashboard</h1>
+    <div>
+        <button onclick="fetchData('steps')">Steps</button>
+        <button onclick="fetchData('calories')">Calories</button>
+        <button onclick="fetchData('distance')">Distance</button>
+        <button onclick="fetchData('heartrate')">Heart Rate</button>
+        <button onclick="fetchData('sleep')">Sleep</button>
+    </div>
+    <div id="chart"></div>
+    
+    <script>
+        function fetchData(dataType) {
+            fetch(`/data/${dataType}`)
+                .then(response => response.json())
+                .then(data => {
+                    var graphDiv = document.getElementById('chart');
+                    Plotly.react(graphDiv, JSON.parse(data).data, JSON.parse(data).layout);
+                });
+        }
+    </script>
+</body>
+</html>
